@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DentSpeak: your dental report, in your language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Noto+Sans+Bengali:wght@500&family=Noto+Sans+Tamil:wght@500&family=Noto+Sans+Devanagari:wght@500&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2A4A; --soft:#56657D; --paper:#F6F8FB; --card:#FFFFFF;
+  --gum:#D6566F; --gum-pale:#FBE9ED; --line:#DCE3EC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8EDF5; --soft:#A3AFC2; --paper:#121A2B; --card:#1A2438;
+    --gum:#F08397; --gum-pale:#3A2230; --line:#2C3850;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8EDF5; --soft:#A3AFC2; --paper:#121A2B; --card:#1A2438;
+  --gum:#F08397; --gum-pale:#3A2230; --line:#2C3850;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:1.0625rem;line-height:1.6}
+.wrap{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
+h1,h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+h1{font-size:clamp(2.6rem,9vw,4.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.5rem;font-weight:700;margin:2.75rem 0 .75rem}
+p{margin:0 0 1rem;max-width:38rem}
+.lede{font-size:1.25rem;color:var(--soft);margin-top:.75rem}
+
+/* The memorable thing: jargon turning into plain words */
+.turn{margin:2.25rem 0 0;display:grid;gap:0}
+.report{background:var(--card);border:1px solid var(--line);border-radius:14px 14px 0 0;padding:1.1rem 1.25rem;
+  font-family:ui-monospace,Consolas,monospace;font-size:.95rem;color:var(--soft)}
+.report mark{background:none;color:var(--ink);text-decoration:underline wavy var(--gum);text-underline-offset:4px}
+.plain{background:var(--gum);color:#fff;border-radius:0 0 14px 14px;padding:1.25rem;
+  font-size:1.15rem;line-height:1.5}
+.plain small{display:block;opacity:.85;font-size:.85rem;margin-bottom:.35rem}
+.langs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.langs span{border:1.5px solid var(--gum);color:var(--gum);border-radius:999px;padding:.2rem .85rem;font-size:1rem}
+.ta{font-family:"Noto Sans Tamil",sans-serif}.bn{font-family:"Noto Sans Bengali",sans-serif}.hi{font-family:"Noto Sans Devanagari",sans-serif}
+
+ol.flow{list-style:none;padding:0;margin:0;counter-reset:s}
+ol.flow li{counter-increment:s;position:relative;padding:0 0 1.1rem 3rem}
+ol.flow li::before{content:counter(s);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;
+  background:var(--gum-pale);color:var(--gum);font-weight:700;display:grid;place-items:center}
+ol.flow li:not(:last-child)::after{content:"";position:absolute;left:1rem;top:2.2rem;bottom:.2rem;border-left:2px dotted var(--line)}
+ol.flow b{display:block}
+
+ul.gains{padding-left:1.1rem;margin:0}
+ul.gains li{margin-bottom:.6rem}
+ul.gains li::marker{color:var(--gum)}
+
+.who{margin-top:2.75rem;border-top:1px solid var(--line);padding-top:1.5rem;color:var(--soft)}
+.who strong{color:var(--ink)}
+.note{font-size:.85rem;color:var(--soft);margin-top:1.5rem}
+@media (prefers-reduced-motion:no-preference){
+  .plain{animation:rise .7s .3s both ease-out}
+  @keyframes rise{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>DentSpeak</h1>
+  <p class="lede">Your dental report, explained in your own language, out loud.</p>
+
+  <div class="turn" aria-label="Example: a dental report and its plain-language explanation">
+    <div class="report">Tooth 36: <mark>deep caries, close to pulp</mark>. <mark>RCT</mark> advised.<br>Tooth 48: <mark>impacted</mark>. Extraction recommended.<br><mark>Generalised gingivitis</mark>. Scaling advised.</div>
+    <div class="plain"><small>What the patient hears</small>Your lower left back tooth has a deep hole that is close to the nerve, so it needs a root canal. Your lower right wisdom tooth is stuck. Your gums are swollen and need a cleaning. Book a visit this week.</div>
+  </div>
+  <div class="langs" aria-label="Languages">
+    <span class="ta">தமிழ்</span><span class="bn">বাংলা</span><span class="hi">हिन्दी</span><span>English</span>
+  </div>
+
+  <h2>The problem</h2>
+  <p>Dental reports are written in English and packed with clinical words. Many patients in India think in another language, and even English readers rarely know what "caries" or "gingivitis" means. They leave the clinic unsure what is wrong or what to do next, and treatment gets delayed.</p>
+
+  <h2>How it works</h2>
+  <ol class="flow">
+    <li><b>Paste the report</b>The patient pastes the text of their dental report and picks a language.</li>
+    <li><b>Explain it simply</b>Sarvam's language model rewrites it in plain words, with no jargon, and ends with one clear next step.</li>
+    <li><b>Hear it</b>Sarvam's Bulbul voice reads the explanation aloud, so reading is not required.</li>
+  </ol>
+
+  <h2>Why it helps</h2>
+  <ul class="gains">
+    <li>Patients understand their condition in the language they think in.</li>
+    <li>Voice works for elderly patients and people who find reading hard.</li>
+    <li>Every explanation ends with an action, like booking a visit.</li>
+    <li>Dentists spend less chair time repeating the same explanations.</li>
+  </ul>
+
+  <h2>What comes next</h2>
+  <ul class="gains">
+    <li>Photo upload, so printed and handwritten reports can be read directly.</li>
+    <li>A link to X-ray analysis, so radiograph findings flow straight into plain-language explanations.</li>
+    <li>A dentist review step before anything reaches the patient.</li>
+  </ul>
+
+  <div class="who">
+    <p><strong>Built by Arkendu Bhattacharya</strong>, a student doing BDS at Sri Ramachandra and a BS in Data Science at IIT Madras, for Sarvam Campus x IIT Madras, September 2026. DentSpeak is the patient layer of a larger oral health platform in progress.</p>
+    <p>Built with Python, Streamlit and Sarvam AI.</p>
+  </div>
+  <p class="note">Demo prototype. Not medical advice. Always confirm with your dentist.</p>
+</main>
+</body>
+</html>
